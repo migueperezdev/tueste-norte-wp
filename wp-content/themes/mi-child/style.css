@@ -1,0 +1,51 @@
+/*
+Theme Name: Mi Child
+Description: Tema hijo de Twenty Twenty-One para el ejercicio 2.
+Author: Miguel Ángel
+Template: twentytwentyone
+Version: 1.0
+Text Domain: mi-child
+*/
+/* Cambio visual 1: fondo de color crema */
+body,
+.site {
+    background-color: #f4ead5 !important;
+}
+
+/* Cambio visual 2: títulos de color marrón café */
+.site-title,
+.site-title a,
+.entry-title,
+.entry-title a {
+    color: #6f4e37 !important;
+}
+
+.texto-footer-personalizado {
+    width: 100%;
+    text-align: center;
+    color: #6f4e37;
+    font-weight: bold;
+}
+
+/* Campos personalizados de ACF */
+.subtitulo-acf,
+.aviso-acf {
+    width: calc(100% - 40px);
+    max-width: 820px;
+    margin: 25px auto !important;
+    box-sizing: border-box;
+}
+
+.subtitulo-acf {
+    color: #6f4e37;
+    font-size: 1.5rem;
+    font-style: italic;
+}
+
+.aviso-acf {
+    padding: 20px;
+    background-color: #6f4e37;
+    color: white;
+    border-radius: 8px;
+    font-weight: bold;
+}

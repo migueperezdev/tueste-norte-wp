@@ -1,0 +1,18 @@
+# Ignorar todo el contenido de la raíz
+/*
+
+# Archivos y carpetas que sí se versionan
+!/.gitignore
+!/README.md
+
+!/wp-content/
+!/wp-content/**
+
+!/ejercicios/
+!/ejercicios/**
+
+!/db/
+!/db/**
+
+!/docs/
+!/docs/**
