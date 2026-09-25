@@ -16,3 +16,6 @@
 
 !/docs/
 !/docs/**
+
+# Archivos subidos y temporales de WordPress
+/wp-content/uploads/
