@@ -6,3 +6,27 @@ Template: twentytwentyone
 Version: 1.0
 Text Domain: tueste-norte
 */
+
+/* Ficha individual de cada café */
+.ficha-cafe {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border: 1px solid #e0d5c8;
+    border-radius: 8px;
+}
+
+.ficha-cafe h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #2b1d12;
+}
+
+.ficha-cafe p {
+    margin: 0.5rem 0;
+}
+
+.ficha-cafe .precio-cafe {
+    color: #6f4e37;
+    font-weight: bold;
+}
