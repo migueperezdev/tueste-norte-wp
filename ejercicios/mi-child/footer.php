@@ -72,7 +72,7 @@
 
 		</div><!-- .site-info -->
 		<p class="texto-footer-personalizado">
-    Tema hijo de Tueste Norte creado por Miguel Ángel.
+    Tema hijo Mi Child creado por Miguel Ángel.
 </p>
 	</footer><!-- #colophon -->
 
