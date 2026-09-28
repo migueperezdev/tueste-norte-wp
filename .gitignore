@@ -1,21 +1,34 @@
 # Ignorar todo el contenido de la raíz
 /*
 
-# Archivos y carpetas que sí se versionan
+# Archivos principales que sí se versionan
 !/.gitignore
 !/README.md
 
+# Contenido de WordPress necesario para el proyecto
 !/wp-content/
 !/wp-content/**
 
+# Ejercicios
 !/ejercicios/
 !/ejercicios/**
 
+# Copia de la base de datos
 !/db/
 !/db/**
 
+# Documentación y capturas
 !/docs/
 !/docs/**
 
 # Archivos subidos y temporales de WordPress
 /wp-content/uploads/
+/wp-content/cache/
+/wp-content/upgrade/
+/wp-content/debug.log
+
+# Archivos temporales del sistema operativo y del editor
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
