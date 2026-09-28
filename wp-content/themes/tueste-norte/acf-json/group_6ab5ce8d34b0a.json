@@ -47,7 +47,7 @@
         {
             "key": "field_6ab5d113e0683",
             "label": "Nivel de tueste",
-            "name": "nivel_de_tueste",
+            "name": "nivel_tueste",
             "aria-label": "",
             "type": "select",
             "instructions": "",
@@ -124,5 +124,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1790307820
+    "modified": 1790620203
 }

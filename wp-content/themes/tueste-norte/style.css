@@ -6,6 +6,31 @@ Template: twentytwentyone
 Version: 1.0
 Text Domain: tueste-norte
 */
+/* Identidad visual general de Tueste Norte */
+body,
+.site {
+    background-color: #d5e7e2;
+    color: #263142;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.site-title,
+.site-title a,
+.entry-title,
+.entry-title a {
+    color: #263142;
+}
+
+a {
+    color: #6f4e37;
+}
 
 /* Ficha individual de cada café */
 .ficha-cafe {

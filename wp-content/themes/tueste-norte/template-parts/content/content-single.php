@@ -33,12 +33,12 @@
 
 			$origen          = get_field( 'origen' );
 			$notas_de_cata   = get_field( 'notas_de_cata' );
-			$nivel_de_tueste = get_field( 'nivel_de_tueste' );
+			$nivel_tueste    = get_field( 'nivel_tueste' );
 			$precio          = get_field( 'precio' );
 
 			$tiene_precio = false !== $precio && null !== $precio && '' !== $precio;
 
-			if ( $origen || $notas_de_cata || $nivel_de_tueste || $tiene_precio ) :
+			if ( $origen || $notas_de_cata || $nivel_tueste || $tiene_precio ) :
 				?>
 
 				<section class="ficha-cafe default-max-width">
@@ -58,10 +58,10 @@
 						</p>
 					<?php endif; ?>
 
-					<?php if ( $nivel_de_tueste ) : ?>
+					<?php if ( $nivel_tueste ) : ?>
 						<p>
 							<strong>Nivel de tueste:</strong>
-							<?php echo esc_html( ucfirst( $nivel_de_tueste ) ); ?>
+							<?php echo esc_html( ucfirst( $nivel_tueste ) ); ?>
 						</p>
 					<?php endif; ?>
 
