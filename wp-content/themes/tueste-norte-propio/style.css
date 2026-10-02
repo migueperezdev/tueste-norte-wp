@@ -1,0 +1,122 @@
+/*
+Theme Name: Tueste Norte Propio
+Description: Tema propio desarrollado desde cero para la web de Tueste Norte.
+Author: Miguel Ángel Pérez Rodríguez
+Version: 1.0.0
+Text Domain: tueste-norte-propio
+*/
+/* Ajustes generales */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f6efe6;
+    color: #2d241f;
+    line-height: 1.6;
+}
+
+a {
+    color: #4a2c20;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.contenedor {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+
+/* Cabecera */
+
+.cabecera-sitio {
+    padding: 20px 0;
+    background-color: #4a2c20;
+    color: white;
+}
+
+.cabecera-sitio .contenedor {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.nombre-sitio {
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.navegacion-principal ul {
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.navegacion-principal a {
+    color: white;
+    text-decoration: none;
+}
+
+.navegacion-principal a:hover {
+    color: #f0c98d;
+}
+
+
+/* Contenido */
+
+.contenido-principal {
+    min-height: 70vh;
+    padding: 50px 0;
+}
+
+.listado-contenido {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.tarjeta {
+    padding: 25px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.tarjeta h2 {
+    margin-top: 0;
+}
+
+
+/* Pie de página */
+
+.pie-sitio {
+    padding: 25px 0;
+    background-color: #2d1b14;
+    color: white;
+    text-align: center;
+}
+
+
+/* Adaptación para pantallas pequeñas */
+
+@media (max-width: 650px) {
+    .cabecera-sitio .contenedor,
+    .navegacion-principal ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
