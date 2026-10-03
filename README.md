@@ -1,49 +1,109 @@
 # Tueste Norte — WordPress
 
-Proyecto realizado durante la segunda semana de prácticas de DAW. Consiste en la adaptación a WordPress de la web Tueste Norte, dedicada al café de especialidad.
+Proyecto desarrollado durante la segunda y tercera semana de prácticas de DAW. Consiste en la adaptación a WordPress de la web Tueste Norte, dedicada al café de especialidad.
+
+Durante la Semana 2 se trabajó con un tema hijo, plugins, páginas, entradas y campos personalizados. En la Semana 3 se desarrolló un tema propio, un plugin personalizado y un catálogo dinámico de cafés.
 
 ## Funcionalidades
 
 - Página de inicio estática.
-- Página “Quiénes somos”.
+- Página «Quiénes somos».
 - Página de contacto.
 - Página Blog para mostrar las entradas.
 - Menú principal de navegación.
+- Enlace directo al catálogo de cafés.
 - Formulario creado con Contact Form 7.
 - Optimización SEO mediante Yoast SEO.
-- Campos personalizados creados con Advanced Custom Fields.
-- Categoría “Cafés”.
-- Cuatro fichas de cafés de especialidad.
-- Una entrada normal de blog.
-- Usuario “Marta” con perfil de Editor.
+- Campos personalizados administrados mediante Advanced Custom Fields.
+- Tipo de contenido personalizado `cafe`.
+- Catálogo dinámico disponible en `/cafes/`.
+- Fichas individuales para cada café.
+- Imágenes destacadas.
+- Identificación del «Tueste de la semana».
+- API REST personalizada para consultar los cafés.
+- Diseño adaptable a diferentes tamaños de pantalla.
+- Usuario «Marta» con perfil de Editor.
 - Enlaces permanentes configurados con nombres amigables.
-- Identidad visual personalizada mediante un tema hijo.
+- Control de versiones mediante Git y GitHub.
 
-## Tema hijo
+## Tema propio
 
-Se ha creado el tema hijo `tueste-norte`, basado en el tema Twenty Twenty-One.
+El tema activo se encuentra en:
 
-El tema hijo contiene:
+`wp-content/themes/tueste-norte-propio`
 
-- `style.css`: información del tema y estilos personalizados.
-- `functions.php`: carga de los estilos del tema padre y del tema hijo.
-- `template-parts/content/content-single.php`: plantilla personalizada para mostrar las fichas de café.
-- `acf-json`: configuración local de los campos personalizados de ACF.
+Se trata de un tema propio desarrollado para trabajar la jerarquía de plantillas de WordPress.
 
-La plantilla personalizada comprueba que la entrada pertenezca a la categoría “Cafés” antes de mostrar su ficha.
+### Archivos principales
+
+- `style.css`: información del tema, estilos generales, catálogo y fichas de cafés.
+- `functions.php`: configuración del tema, carga de estilos, soporte para imágenes destacadas y registro del menú.
+- `header.php`: cabecera, nombre del sitio y menú principal.
+- `footer.php`: pie de página.
+- `index.php`: plantilla general y página de respaldo.
+- `page.php`: muestra el contenido completo de las páginas estáticas.
+- `single.php`: plantilla para las entradas normales del blog.
+- `archive-cafe.php`: catálogo de cafés.
+- `single-cafe.php`: ficha individual de cada café.
+
+## Jerarquía de plantillas
+
+WordPress selecciona automáticamente la plantilla adecuada según el contenido solicitado.
+
+- Las entradas normales utilizan `single.php`.
+- El archivo del tipo de contenido `cafe` utiliza `archive-cafe.php`.
+- Los cafés individuales utilizan `single-cafe.php`.
+- `index.php` actúa como plantilla general de respaldo.
+- Las páginas estáticas utilizan `page.php`.
+
+El catálogo se encuentra en:
+
+`http://localhost/tueste-norte-wp/cafes/`
+
+## Plugin TN Cafés
+
+El plugin personalizado se encuentra en:
+
+`wp-content/plugins/tn-cafes/tn-cafes.php`
+
+Este plugin se encarga de:
+
+- Registrar el tipo de contenido personalizado `cafe`.
+- Crear el archivo público con la dirección `/cafes/`.
+- Habilitar el editor, el extracto y la imagen destacada.
+- Mostrar la sección «Cafés» en el escritorio de WordPress.
+- Registrar los campos personalizados mediante ACF.
+- Mostrar la etiqueta «Tueste de la semana».
+- Exponer los cafés y sus datos en la API REST.
+- Regenerar las reglas de enlaces al activar y desactivar el plugin.
+
+## Tipo de contenido Café
+
+El tipo de contenido personalizado utiliza el identificador:
+
+`cafe`
+
+Sus principales características son:
+
+- Es público.
+- Dispone de archivo propio.
+- Utiliza el slug `cafes`.
+- Permite título, editor, extracto e imagen destacada.
+- Está disponible mediante la API REST de WordPress.
 
 ## Campos personalizados
 
-El grupo de campos “Ficha de café” aparece únicamente en las entradas pertenecientes a la categoría “Cafés”.
+El grupo «Datos del café» aparece únicamente al editar contenidos del tipo `cafe`.
 
 Campos utilizados:
 
-- `origen`: campo de texto.
-- `notas_de_cata`: área de texto.
+- `origen`: procedencia del café.
+- `notas_cata`: sabores y aromas principales.
 - `nivel_tueste`: selección entre claro, medio y oscuro.
-- `precio`: campo numérico expresado en euros por 250 gramos.
+- `precio`: precio expresado en euros.
+- `tueste_semana`: indica si el café está destacado durante la semana.
 
-La plantilla comprueba que cada campo tenga contenido antes de mostrarlo. También utiliza funciones de escape de WordPress para imprimir los datos de manera segura.
+Las plantillas comprueban que cada campo tenga contenido antes de mostrarlo y utilizan funciones de escape de WordPress para imprimir los datos de manera segura.
 
 ## Cafés publicados
 
@@ -52,15 +112,79 @@ La plantilla comprueba que cada campo tenga contenido antes de mostrarlo. Tambi�
 - Cerrado Natural.
 - Volcán de Antigua.
 
-Además, se ha publicado la entrada normal de blog “Cómo conservar el café en casa”. Esta entrada no pertenece a la categoría “Cafés” y, por tanto, no muestra la ficha personalizada.
+Volcán de Antigua está seleccionado como «Tueste de la semana».
+
+Cada café contiene:
+
+- Título.
+- Descripción completa.
+- Extracto.
+- Imagen destacada.
+- Origen.
+- Notas de cata.
+- Nivel de tueste.
+- Precio.
+- Enlace a su ficha individual.
+
+## Catálogo de cafés
+
+La plantilla `archive-cafe.php` muestra los cafés mediante tarjetas.
+
+Cada tarjeta incluye:
+
+- Imagen destacada.
+- Nombre del café.
+- Etiqueta «Tueste de la semana» cuando corresponde.
+- Campos personalizados.
+- Extracto.
+- Botón «Ver café».
+
+El catálogo utiliza un diseño adaptable que reorganiza las tarjetas según el ancho de la pantalla.
+
+## Fichas individuales
+
+La plantilla `single-cafe.php` muestra:
+
+- Nombre del café.
+- Fecha de publicación.
+- Imagen destacada.
+- Origen.
+- Notas de cata.
+- Nivel de tueste.
+- Precio.
+- Descripción completa.
+- Botón para volver al catálogo.
+
+## API REST
+
+Los cafés pueden consultarse desde la API REST de WordPress.
+
+Endpoint utilizado:
+
+`http://localhost/tueste-norte-wp/wp-json/wp/v2/cafes`
+
+Además de los datos habituales de WordPress, la respuesta incluye:
+
+- `origen`.
+- `notas_cata`.
+- `nivel_tueste`.
+- `precio`.
+- `tueste_semana`.
+- `imagen_destacada`.
 
 ## Plugins utilizados
+
+### TN Cafés
+
+Categoría: plugin personalizado.
+
+Registra el tipo de contenido `cafe`, los campos ACF, el tueste de la semana y los datos adicionales de la API REST.
 
 ### Advanced Custom Fields
 
 Categoría: gestión de contenido y campos personalizados.
 
-Se utiliza para crear la ficha estructurada de cada café. Permite administrar el origen, las notas de cata, el nivel de tueste y el precio desde el editor de WordPress.
+Permite administrar los datos estructurados de cada café desde el editor de WordPress.
 
 ### Contact Form 7
 
@@ -72,84 +196,137 @@ Se utiliza para crear y validar el formulario de contacto con los campos nombre,
 
 Categoría: posicionamiento y optimización SEO.
 
-Se utiliza para añadir herramientas de optimización SEO y configurar la representación general del sitio en los buscadores.
+Se utiliza para configurar herramientas de optimización SEO y la representación general del sitio en los buscadores.
+
+## Entrada de blog
+
+Se ha publicado la entrada:
+
+`Cómo conservar el café en casa`
+
+Esta entrada utiliza `single.php` y no muestra los campos personalizados de los cafés.
 
 ## Ejercicios previos
 
-La carpeta `ejercicios/mi-child` contiene el tema hijo realizado en los ejercicios iniciales.
+La carpeta `ejercicios/mi-child` contiene el tema hijo realizado durante los ejercicios iniciales.
 
-Este tema incluye estilos personalizados, carga de hojas de estilo mediante `functions.php`, una modificación del pie de página y una plantilla `page.php` que muestra campos personalizados de ACF.
+También se conserva el tema hijo `tueste-norte`, basado en Twenty Twenty-One, desarrollado durante la Semana 2.
+
+Estos ejercicios incluyen:
+
+- Carga de hojas de estilo mediante `functions.php`.
+- Modificación del pie de página.
+- Plantillas personalizadas.
+- Campos personalizados de ACF.
+- Configuración local mediante `acf-json`.
+
+El tema utilizado en la Semana 3 es `tueste-norte-propio`.
 
 ## Instalación local
 
-1. Instalar XAMPP e iniciar Apache y MySQL.
-2. Instalar WordPress dentro de `C:\xampp\htdocs\tueste-norte-wp`.
-3. Copiar los archivos del repositorio dentro de la instalación local.
-4. Crear una base de datos para el proyecto desde phpMyAdmin.
-5. Importar el archivo `db/tueste-norte.sql`.
-6. Configurar en `wp-config.php` el nombre de la base de datos, el usuario y la contraseña.
-7. Comprobar que el tema padre Twenty Twenty-One esté instalado.
+1. Instalar XAMPP.
+2. Iniciar Apache y MySQL.
+3. Instalar WordPress en `C:\xampp\htdocs\tueste-norte-wp`.
+4. Copiar los archivos del repositorio dentro de la instalación local.
+5. Crear una base de datos desde phpMyAdmin.
+6. Importar `db/tueste-norte.sql`.
+7. Configurar en `wp-config.php` el nombre de la base de datos, el usuario y la contraseña.
 8. Instalar y activar Advanced Custom Fields, Contact Form 7 y Yoast SEO.
-9. Activar el tema hijo Tueste Norte.
-10. Configurar los enlaces permanentes con la opción “Nombre de la entrada”.
-11. Comprobar que “Inicio” esté seleccionada como portada estática y “Blog” como página de entradas.
+9. Activar el plugin TN Cafés.
+10. Activar el tema Tueste Norte Propio.
+11. Configurar los enlaces permanentes con la opción «Nombre de la entrada».
+12. Comprobar que «Inicio» esté seleccionada como portada estática y «Blog» como página de entradas.
+13. Comprobar que el menú esté asignado a la ubicación «Menú principal».
 
 La dirección local utilizada durante el desarrollo es:
 
-[http://localhost/tueste-norte-wp/](http://localhost/tueste-norte-wp/)
+`http://localhost/tueste-norte-wp/`
 
 ## Depuración
 
-Durante el desarrollo se utilizó `WP_DEBUG` con el valor `true` para detectar posibles errores de WordPress y PHP.
+Durante el desarrollo se utilizó `WP_DEBUG` con el valor `true` para detectar errores de WordPress y PHP.
 
 Esta configuración se encuentra en `wp-config.php`, archivo que no se incluye en el repositorio porque contiene datos de conexión propios de cada instalación.
 
 ## Base de datos
 
-La copia de seguridad de la base de datos está disponible en:
+La copia de seguridad está disponible en:
 
 `db/tueste-norte.sql`
 
-Esta copia contiene las páginas, entradas, usuarios, configuraciones y campos personalizados necesarios para restaurar el sitio.
+Esta copia contiene:
+
+- Páginas.
+- Entradas.
+- Cafés.
+- Campos personalizados.
+- Menús.
+- Usuarios.
+- Configuración del sitio.
+- Configuración de los plugins.
+
+Los archivos de la biblioteca de medios no forman parte de la base de datos y deben conservarse por separado si se necesita una restauración completa.
 
 ## Control de versiones
 
 Se incluyen en el repositorio:
 
 - La carpeta `wp-content` necesaria para el proyecto.
-- Los temas hijos desarrollados.
+- Los temas desarrollados.
+- El plugin personalizado TN Cafés.
 - La carpeta `ejercicios`.
-- La documentación y las capturas de pantalla de `docs`.
-- La copia de la base de datos `db/tueste-norte.sql`.
-- Los archivos `README.md` y `.gitignore`.
+- La documentación de `docs`.
+- La copia de la base de datos.
+- `README.md`.
+- `.gitignore`.
 
 No se incluyen:
 
 - Los archivos del núcleo de WordPress.
 - Las carpetas `wp-admin` y `wp-includes`.
-- El archivo `wp-config.php`, porque contiene configuración local y datos de conexión.
-- La carpeta `wp-content/uploads`, porque contiene archivos subidos desde la instalación local.
-- Archivos temporales del sistema operativo y de Visual Studio Code.
+- `wp-config.php`.
+- `wp-content/uploads`.
+- Archivos temporales del sistema operativo.
+- La configuración personal de Visual Studio Code.
 
 ## Restauración y cambio de URL
 
-Para restaurar el proyecto hay que instalar WordPress, copiar la carpeta `wp-content`, crear una base de datos e importar el archivo `db/tueste-norte.sql`.
+Para restaurar el proyecto:
 
-Después se debe configurar `wp-config.php` con los datos de conexión de la nueva base de datos.
+1. Instalar WordPress.
+2. Copiar la carpeta `wp-content`.
+3. Crear una base de datos.
+4. Importar `db/tueste-norte.sql`.
+5. Configurar `wp-config.php`.
+6. Activar el tema y los plugins necesarios.
+7. Guardar nuevamente los enlaces permanentes.
 
 Si la dirección local es diferente de `http://localhost/tueste-norte-wp/`, deben actualizarse los valores `siteurl` y `home` de la tabla `wp_options`.
 
-También debe realizarse una sustitución segura de la URL antigua por la nueva mediante WP-CLI o un plugin de búsqueda y reemplazo compatible con datos serializados.
-
-Después del cambio de URL, se recomienda entrar en **Ajustes → Enlaces permanentes** y guardar de nuevo la configuración para regenerar las reglas de enlaces.
+También debe realizarse una sustitución segura de la URL antigua mediante WP-CLI o una herramienta compatible con datos serializados.
 
 ## Documentación
 
-Las capturas de pantalla que demuestran la configuración y el funcionamiento del proyecto se encuentran en la carpeta `docs/capturas`.
+Las capturas que demuestran la configuración y el funcionamiento del proyecto se encuentran en:
+
+`docs/capturas`
+
+Entre las evidencias se incluyen:
+
+- Tema propio.
+- Plugin personalizado.
+- Tipo de contenido Café.
+- Campos personalizados.
+- Catálogo de cafés.
+- Ficha individual.
+- Tueste de la semana.
+- API REST.
+- Historial de Git.
+- Estado final del repositorio.
 
 ## Repositorio
 
-[https://github.com/migueperezdev/tueste-norte-wp](https://github.com/migueperezdev/tueste-norte-wp)
+[Repositorio Tueste Norte en GitHub](https://github.com/migueperezdev/tueste-norte-wp)
 
 ## Autor
 
