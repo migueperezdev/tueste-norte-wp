@@ -228,3 +228,47 @@ img {
     background-color: #8a4f2a;
     color: white;
 }
+
+/* Ficha individual de cada café */
+
+.ficha-cafe {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.imagen-cafe-individual img {
+    display: block;
+    width: 100%;
+    height: 430px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.ficha-datos-cafe {
+    margin: 24px 0;
+    padding: 24px;
+}
+
+.ficha-datos-cafe p {
+    margin: 0 0 12px;
+}
+
+.ficha-datos-cafe p:last-child {
+    margin-bottom: 0;
+}
+
+.ficha-cafe .contenido-entrada {
+    margin-top: 24px;
+    line-height: 1.7;
+}
+
+.volver-catalogo {
+    display: inline-block;
+    margin-top: 8px;
+}
+
+@media (max-width: 650px) {
+    .imagen-cafe-individual img {
+        height: 260px;
+    }
+}
