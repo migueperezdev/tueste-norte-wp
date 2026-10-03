@@ -146,3 +146,75 @@ function tn_cafes_registrar_campos_acf() {
 }
 
 add_action( 'acf/init', 'tn_cafes_registrar_campos_acf' );
+/**
+ * Muestra una etiqueta en el café elegido como tueste de la semana.
+ */
+function tn_cafes_mostrar_tueste_semana( $contenido ) {
+    if (
+        is_singular( 'cafe' )
+        && in_the_loop()
+        && is_main_query()
+        && function_exists( 'get_field' )
+        && get_field( 'tueste_semana' )
+    ) {
+        $etiqueta = '<p class="etiqueta-tueste-semana">Tueste de la semana</p>';
+
+        return $etiqueta . $contenido;
+    }
+
+    return $contenido;
+}
+
+add_filter( 'the_content', 'tn_cafes_mostrar_tueste_semana' );
+/**
+ * Devuelve el valor de un campo ACF en la REST API.
+ */
+function tn_cafes_obtener_campo_rest( $objeto, $nombre_campo ) {
+    if ( ! function_exists( 'get_field' ) ) {
+        return null;
+    }
+
+    return get_field( $nombre_campo, $objeto['id'] );
+}
+
+/**
+ * Devuelve la dirección de la imagen destacada.
+ */
+function tn_cafes_obtener_imagen_rest( $objeto ) {
+    $imagen = get_the_post_thumbnail_url( $objeto['id'], 'large' );
+
+    return $imagen ? $imagen : '';
+}
+
+/**
+ * Añade los datos personalizados a la REST API de cafés.
+ */
+function tn_cafes_registrar_campos_rest() {
+    $campos_acf = array(
+        'origen',
+        'notas_cata',
+        'nivel_tueste',
+        'precio',
+        'tueste_semana',
+    );
+
+    foreach ( $campos_acf as $campo ) {
+        register_rest_field(
+            'cafe',
+            $campo,
+            array(
+                'get_callback' => 'tn_cafes_obtener_campo_rest',
+            )
+        );
+    }
+
+    register_rest_field(
+        'cafe',
+        'imagen_destacada',
+        array(
+            'get_callback' => 'tn_cafes_obtener_imagen_rest',
+        )
+    );
+}
+
+add_action( 'rest_api_init', 'tn_cafes_registrar_campos_rest' );
