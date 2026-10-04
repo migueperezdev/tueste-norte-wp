@@ -2,8 +2,7 @@
 get_header();
 ?>
 
-<main class="contenido-principal">
-    <div class="contenedor">
+<section class="archivo-cafes">
 
         <header class="cabecera-archivo">
             <h1>Nuestros cafés</h1>
@@ -96,8 +95,7 @@ $tueste_semana = get_field( 'tueste_semana' );
 
         <?php endif; ?>
 
-    </div>
-</main>
+</section>
 
 <?php
 get_footer();

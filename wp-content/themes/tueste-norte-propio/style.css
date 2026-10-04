@@ -267,6 +267,12 @@ img {
     margin-top: 8px;
 }
 
+.listado-cafes {
+    max-width: 900px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 @media (max-width: 650px) {
     .imagen-cafe-individual img {
         height: 260px;

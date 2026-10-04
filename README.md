@@ -77,6 +77,12 @@ Este plugin se encarga de:
 - Exponer los cafés y sus datos en la API REST.
 - Regenerar las reglas de enlaces al activar y desactivar el plugin.
 
+### Decisión sobre el «Tueste de la semana»
+
+Para implementar el «Tueste de la semana» se ha utilizado un campo ACF de tipo verdadero/falso llamado `tueste_semana`.
+
+Esta solución permite que el equipo de Tueste Norte marque o desmarque el café destacado directamente desde el editor de WordPress, sin modificar código. Se eligió porque integra esta función en la misma pantalla donde se administran los datos de cada café y resulta sencilla para el cliente.
+
 ## Tipo de contenido Café
 
 El tipo de contenido personalizado utiliza el identificador:
@@ -172,6 +178,28 @@ Además de los datos habituales de WordPress, la respuesta incluye:
 - `tueste_semana`.
 - `imagen_destacada`.
 
+Ejemplo recortado de una respuesta JSON real:
+
+```json
+[
+    {
+        "id": 65,
+        "slug": "sidamo-floral",
+        "title": {
+            "rendered": "Sidamo Floral"
+        },
+        "acf": {
+            "origen": "Sidamo, Etiopía",
+            "notas_cata": "Jazmín, bergamota y arándanos",
+            "nivel_tueste": "claro",
+            "precio": "14.5",
+            "tueste_semana": false
+        },
+        "imagen_destacada": "http://localhost/tueste-norte-wp/wp-content/uploads/2026/10/sidamo-floral.avif"
+    }
+]
+```
+
 ## Plugins utilizados
 
 ### TN Cafés
@@ -179,6 +207,12 @@ Además de los datos habituales de WordPress, la respuesta incluye:
 Categoría: plugin personalizado.
 
 Registra el tipo de contenido `cafe`, los campos ACF, el tueste de la semana y los datos adicionales de la API REST.
+
+### TN Ejercicios
+
+Categoría: plugin personalizado para los ejercicios de asimilación.
+
+Utiliza el filtro `excerpt_length` para limitar los resúmenes automáticos a 20 palabras y la acción `wp_footer` para imprimir un comentario HTML con la fecha en que se sirve la página.
 
 ### Advanced Custom Fields
 
@@ -232,7 +266,7 @@ El tema utilizado en la Semana 3 es `tueste-norte-propio`.
 6. Importar `db/tueste-norte.sql`.
 7. Configurar en `wp-config.php` el nombre de la base de datos, el usuario y la contraseña.
 8. Instalar y activar Advanced Custom Fields, Contact Form 7 y Yoast SEO.
-9. Activar el plugin TN Cafés.
+9. Activar los plugins TN Cafés y TN Ejercicios.
 10. Activar el tema Tueste Norte Propio.
 11. Configurar los enlaces permanentes con la opción «Nombre de la entrada».
 12. Comprobar que «Inicio» esté seleccionada como portada estática y «Blog» como página de entradas.
@@ -265,7 +299,7 @@ Esta copia contiene:
 - Configuración del sitio.
 - Configuración de los plugins.
 
-Los archivos de la biblioteca de medios no forman parte de la base de datos y deben conservarse por separado si se necesita una restauración completa.
+Los archivos de la biblioteca de medios no forman parte de la base de datos. Por este motivo, las imágenes necesarias para reproducir el proyecto también se incluyen en `wp-content/uploads/2026/09` y `wp-content/uploads/2026/10`.
 
 ## Control de versiones
 
@@ -273,19 +307,20 @@ Se incluyen en el repositorio:
 
 - La carpeta `wp-content` necesaria para el proyecto.
 - Los temas desarrollados.
-- El plugin personalizado TN Cafés.
+- Los plugins personalizados TN Cafés y TN Ejercicios.
 - La carpeta `ejercicios`.
 - La documentación de `docs`.
 - La copia de la base de datos.
 - `README.md`.
 - `.gitignore`.
+- Las imágenes necesarias para reproducir el sitio.
 
 No se incluyen:
 
 - Los archivos del núcleo de WordPress.
 - Las carpetas `wp-admin` y `wp-includes`.
 - `wp-config.php`.
-- `wp-content/uploads`.
+- Otros archivos de `wp-content/uploads` que no sean necesarios para el proyecto, incluida la carpeta temporal `wpcf7_uploads`.
 - Archivos temporales del sistema operativo.
 - La configuración personal de Visual Studio Code.
 
