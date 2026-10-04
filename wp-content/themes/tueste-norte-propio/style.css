@@ -278,3 +278,39 @@ img {
         height: 260px;
     }
 }
+
+/* Botones de las páginas estáticas */
+
+.contenido-pagina .wp-block-buttons {
+    margin: 12px 0 36px;
+}
+
+.contenido-pagina .wp-block-button__link {
+    padding: 10px 18px;
+    background-color: #4a2c20;
+    color: white;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.contenido-pagina .wp-block-button__link:hover {
+    background-color: #8a4f2a;
+    color: white;
+}
+
+/* Separación entre los apartados de las páginas */
+
+.contenido-pagina h1 {
+    margin-bottom: 42px;
+}
+
+.contenido-pagina h2 {
+    margin-top: 38px;
+    margin-bottom: 22px;
+}
+
+.contenido-pagina p {
+    line-height: 1.6;
+    margin-bottom: 18px;
+}
